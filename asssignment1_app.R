@@ -2,7 +2,9 @@ library(shiny)
 library(tidyverse)
 library(plotly)
 
-resources <- read_csv("natural-resources.csv")
+resources <- read_csv("natural-resources.csv") %>%
+  select(`Gas production`,`Gas consumption`,`Coal production`,`Coal consumption`,`Oil production`,`Oil consumption`,
+         `Entity`,`Year`,`Gas reserves`,`Oil reserves`,`Coal reserves`)
 
 
 
