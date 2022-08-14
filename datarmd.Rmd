@@ -1,0 +1,15 @@
+---
+title: "Untitled"
+author: "Kumar Vatsal"
+date: '2022-08-14'
+output: html_document
+---
+
+```{r}
+resources <- read_csv("natural-resources.csv") %>%
+  select(`Gas production`,`Gas consumption`,`Coal production`,`Coal consumption`,`Oil production`,`Oil consumption`,`Entity`,`Year`,`Gas reserves`,`Oil reserves`,`Coal reserves`)
+ 
+  
+  
+```
+
