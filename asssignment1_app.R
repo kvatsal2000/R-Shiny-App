@@ -59,7 +59,8 @@ server <- function(input, output, session) {
     filter( type == input$res)
 
    p<- ggplot(rec1,aes(x = `Year`,
-                         y= quantity)) + geom_line(stat = 'identity')
+                         y= quantity)) + geom_line(stat = 'identity') + theme_dark() + scale_x_continuous( breaks = seq(min(resources2$Year),
+                                        max(resources2$Year), by=2))  + labs(x = "Production", y = "Year")
    ggplotly(p)
 
   })
@@ -72,7 +73,8 @@ server <- function(input, output, session) {
       filter( type == input$res2)
 
     p<- ggplot(rec2,aes(x = `Year`,
-                        y= quantity)) + geom_line(stat = 'identity')
+                        y= quantity)) + geom_line(stat = 'identity') + theme_dark() + scale_x_continuous( breaks = seq(min(resources2$Year),
+                                        max(resources2$Year), by=2)) + labs(x = "Consumption", y = "Year")
     ggplotly(p)
 
   })
