@@ -9,7 +9,19 @@ output: html_document
 resources <- read_csv("natural-resources.csv") %>%
   select(`Gas production`,`Gas consumption`,`Coal production`,`Coal consumption`,`Oil production`,`Oil consumption`,`Entity`,`Year`,`Gas reserves`,`Oil reserves`,`Coal reserves`)
  
-  
+
+resources2 <- read_csv("natural-resources.csv") %>%
+  select(`Gas production`,`Gas consumption`,`Coal production`,`Coal consumption`,`Oil production`,`Oil consumption`,`Entity`,`Year`,`Gas reserves`,`Oil reserves`,`Coal reserves`) %>% 
+  pivot_longer(cols = `Gas production`:`Oil consumption`,
+               names_to = 'type',
+               values_to = 'quantity' )
+
+
   
 ```
+
+
+
+
+
 
