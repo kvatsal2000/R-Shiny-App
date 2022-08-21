@@ -10,12 +10,36 @@
 }
 
 h3 {
-  color: #006DAE;
-  font-size: 1.5em;
+  color: white;
+  font-size: 2em;
+  background: black;
+  font-weight: 900;
+  font-style: italic;
+  text-decoration: underline;
 }
 
 details > summary:first-of-type {
     display: list-item;
     counter-increment: list-item 0;
     list-style: inside disclosure-closed;
+}
+
+
+body {
+  background-color: lightblue;
+
+}
+
+
+h2 {
+  color: green;
+  font-weight: bold;
+  font-size: 2.5em;
+  background: lightblue;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+div {
+  font-weight: bold;
 }

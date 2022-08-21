@@ -1,26 +1,26 @@
 
 #### Data
 
-This data shows the waiting time between eruptions
-and the duration of the eruption for the Old Faithful
-geyser in Yellowstone National Park, Wyoming, USA.
-The data source is from Azzalini & Bowman (1990) 
-*"A look at some data on the Old Faithful geyser." Applied Statistics*, 39, 357–365.
+This data shows the details of the different types of fossil fuels (mainly oil, gas and coal) for different countries.
+This data set contains data for consumption, production, export, import, reserves, population of the different countries. 
+The time frame of data is 1980-2021.
+The data was published US Energy Information Analysis (EIA) 
+The data can be found [here](https://ourworldindata.org/explorers/natural-resources)
 
 
 #### Purpose
 
 The purpose of the app is to:
 
-1. show how the number of bins in a histogram reveals/hides the bimodality in the data,
-2. show how the different plot choices make certain features of data more striking, and 
-3. interactively estimate the best parameters for the mixture of two normal distributions to the data. 
+1. Show the yearly production trend of the different types of fossil fuels for different countries.
+2. Show the yearly consumption trend of the different types of fossil fuels for different countries and also try to establish a relation between consumption and population.
+3. Show the reserves of the different types of fossil fuels and does it have a relation with the production of the respective fossil fuel. 
 
-The data showed obvious signs of bimodality (both in the marginal and joint distribution). The app used interactive components to see how the choices in plot elements (e.g. number of bins and plot types) effect the visibility of these features. The last part used an interactive approach for a user to decide the model parameters that fit the data. 
+It is clear from the data that for most of the countries, the consumption of the fossil fuel increases with the increase in population.
 
 #### Creator
 
-Emi Tanaka (emi.tanaka@monash.edu)
+Kumar Vatsal (kvat0001@student.monash.edu)
 
 <details>
 <summary>Session information</summary>
