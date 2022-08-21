@@ -23,6 +23,14 @@ resources3 <- resources2 %>%
                values_to = 'quantity_reserve')
 
 
+resources4 <- read_csv("natural-resources.csv") %>%
+  select(`Gas imports`,`Gas exports`,`Coal imports`,`Coal exports`,`Oil imports`,`Oil exports`,`Entity`,`Year`) %>%
+  pivot_longer(cols = `Gas imports`:`Oil exports`,  names_to = 'type',
+                                                     values_to = 'quantity')
+
+
+
+
 ui <- fluidPage(
 
   titlePanel("ANALYSIS OF DIFFERENT TYPES NATURAL RESOURCES FOR DIFFERENT COUNTRIES"),
@@ -66,6 +74,24 @@ fluidRow(
   )
 
 ),
+
+
+h3("4.Import and Export of different countries "),
+
+fluidRow(
+  selectInput("country4","Select a country",choices = unique(resources3$Entity)),
+  selectInput("res4","Select the Fossil fuel for Import Data", choices = c("Oil imports","Gas imports","Coal imports")),
+  selectInput("res5","Select the Fossil fuel for Export Data", choices = c("Oil exports","Gas exports","Coal exports")),
+
+
+  mainPanel(
+    plotlyOutput("plot5"),
+    plotlyOutput("plot6")
+  )
+
+),
+
+
 includeCSS("styles.css")
 )
 
@@ -140,6 +166,50 @@ server <- function(input, output, session) {
     ggplotly(p)
 
   })
+
+
+  output$plot5 <- renderPlotly({
+    rec4 <- resources4 %>%
+      filter(Entity ==  input$country4) %>%
+      filter( type == input$res4)
+
+    p<- ggplot(rec4,aes(x = `Year`,
+                        y= quantity/1000000)) + geom_line(stat = 'identity') +
+      theme_dark() +
+      scale_x_continuous( breaks = seq(min(resources2$Year),
+                                       max(resources2$Year), by=2)) +
+      labs(x = "Year", y = "Reserves(in millions)")
+    ggplotly(p)
+
+  })
+
+
+
+
+  output$plot6 <- renderPlotly({
+    rec4 <- resources4 %>%
+      filter(Entity ==  input$country4) %>%
+      filter( type == input$res5)
+
+    p<- ggplot(rec4,aes(x = `Year`,
+                        y= quantity/1000000)) + geom_line(stat = 'identity') +
+      theme_dark() +
+      scale_x_continuous( breaks = seq(min(resources2$Year),
+                                       max(resources2$Year), by=2)) +
+      labs(x = "Year", y = "Reserves(in millions)")
+    ggplotly(p)
+
+  })
+
+
+
+
+
+
+
+
+
+
 
 }
 
