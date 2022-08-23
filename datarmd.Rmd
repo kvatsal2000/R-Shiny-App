@@ -93,7 +93,7 @@ reso5 <- resources4 <- read_csv("natural-resources.csv") %>%
   select(`Gas imports`,`Gas exports`,`Coal imports`,`Coal exports`,`Oil imports`,`Oil exports`,`Entity`,`Year`) %>% 
   filter(Entity == "India")
 
-
+includeCSS("styles.css")
 
 ```
 ```{r}

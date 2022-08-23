@@ -10,7 +10,6 @@
 }
 
 h3 {
-  color: white;
   font-size: 2em;
   background: black;
   font-weight: 900;
@@ -24,11 +23,6 @@ details > summary:first-of-type {
     list-style: inside disclosure-closed;
 }
 
-
-body {
-  background-color: lightblue;
-
-}
 
 
 h2 {

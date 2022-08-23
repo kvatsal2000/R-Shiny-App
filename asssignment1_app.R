@@ -1,15 +1,19 @@
 library(shiny)
 library(tidyverse)
 library(plotly)
+library(shinythemes)
+library(ggthemes)
 
-resources <- read_csv("natural-resources.csv") %>%
+
+
+resources <- read_csv(here::here("natural-resources.csv")) %>%
   select(`Gas production`,`Gas consumption`,`Coal production`,`Coal consumption`,`Oil production`,`Oil consumption`,
          `Entity`,`Year`,`Gas reserves`,`Oil reserves`,`Coal reserves`)
 
 
 
 
-resources2 <- read_csv("natural-resources.csv") %>%
+resources2 <- read_csv(here::here("natural-resources.csv")) %>%
   select(`Gas production`,`Gas consumption`,`Coal production`,`Coal consumption`,`Oil production`,`Oil consumption`,`Entity`,`Year`,`Gas reserves`,`Oil reserves`,`Coal reserves`,`Population`) %>%
   pivot_longer(cols = `Gas production`:`Oil consumption`,
                names_to = 'type',
@@ -23,17 +27,19 @@ resources3 <- resources2 %>%
                values_to = 'quantity_reserve')
 
 
-resources4 <- read_csv("natural-resources.csv") %>%
+resources4 <- read_csv(here::here("natural-resources.csv")) %>%
   select(`Gas imports`,`Gas exports`,`Coal imports`,`Coal exports`,`Oil imports`,`Oil exports`,`Entity`,`Year`) %>%
   pivot_longer(cols = `Gas imports`:`Oil exports`,  names_to = 'type',
                                                      values_to = 'quantity')
 
 
 
-
 ui <- fluidPage(
 
-  titlePanel("ANALYSIS OF DIFFERENT TYPES NATURAL RESOURCES FOR DIFFERENT COUNTRIES"),
+
+  theme = shinytheme("superhero"),
+
+  titlePanel("ANALYSIS OF DIFFERENT FOSSIL FULES FOR DIFFERENT COUNTRIES"),
 
   h3("1.Resource production of different countries"),
 
@@ -91,8 +97,8 @@ fluidRow(
 
 ),
 
-
 includeCSS("styles.css")
+
 )
 
 
@@ -107,7 +113,7 @@ server <- function(input, output, session) {
     filter( type == input$res)
 
    p<- ggplot(rec1,aes(x = `Year`,
-                         y= quantity/1000000)) + geom_line(stat = 'identity') + theme_dark() +
+                         y= quantity/1000000)) + geom_line(stat = 'identity') + theme_economist() +
      scale_x_continuous( breaks = seq(min(resources2$Year),
                                         max(resources2$Year), by=2))  +
      labs(x = "Year", y = "Production(in million)")
@@ -124,7 +130,7 @@ server <- function(input, output, session) {
 
     p<- ggplot(rec2,aes(x = `Year`,
                         y= quantity/1000000)) + geom_line(stat = 'identity') +
-      theme_dark() +
+      theme_economist() +
       scale_x_continuous( breaks = seq(min(resources2$Year),
                                         max(resources2$Year), by=2)) +
       labs(x = "Year", y = "Consumption (in million)")
@@ -141,7 +147,7 @@ server <- function(input, output, session) {
 
     p<- ggplot(rec2,aes(x = `Year`,
                         y= Population/1000000)) + geom_line(stat = 'identity') +
-      theme_dark() +
+      theme_economist() +
       scale_x_continuous( breaks = seq(min(resources2$Year),
                                        max(resources2$Year), by=2)) +
       labs(x = "Year", y = "Population(in millions)")
@@ -159,7 +165,7 @@ server <- function(input, output, session) {
 
     p<- ggplot(rec3,aes(x = `Year`,
                         y= quantity_reserve/1000000)) + geom_line(stat = 'identity') +
-      theme_dark() +
+      theme_economist() +
       scale_x_continuous( breaks = seq(min(resources2$Year),
                                        max(resources2$Year), by=2)) +
       labs(x = "Year", y = "Reserves(in millions)")
@@ -175,10 +181,10 @@ server <- function(input, output, session) {
 
     p<- ggplot(rec4,aes(x = `Year`,
                         y= quantity/1000000)) + geom_line(stat = 'identity') +
-      theme_dark() +
+      theme_economist() +
       scale_x_continuous( breaks = seq(min(resources2$Year),
                                        max(resources2$Year), by=2)) +
-      labs(x = "Year", y = "Reserves(in millions)")
+      labs(x = "Year", y = "Quantity(in millions)")
     ggplotly(p)
 
   })
@@ -193,10 +199,10 @@ server <- function(input, output, session) {
 
     p<- ggplot(rec4,aes(x = `Year`,
                         y= quantity/1000000)) + geom_line(stat = 'identity') +
-      theme_dark() +
+      theme_economist() +
       scale_x_continuous( breaks = seq(min(resources2$Year),
                                        max(resources2$Year), by=2)) +
-      labs(x = "Year", y = "Reserves(in millions)")
+      labs(x = "Year", y = "Quantity(in millions)")
     ggplotly(p)
 
   })
@@ -211,7 +217,12 @@ server <- function(input, output, session) {
 
 
 
+
 }
 
+
+
 shinyApp(ui, server)
+
+
 
