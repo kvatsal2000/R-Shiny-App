@@ -11,4 +11,4 @@ The goal of this app is to better visualize and analyse the dataset. Finding whi
 The link to the app can be found at [https://15szyy-kumar-vatsal.shinyapps.io/shiny--kvatsal2000/](https://15szyy-kumar-vatsal.shinyapps.io/shiny--kvatsal2000/)
 
 
-The app runs fine locally but the published app does not load.
+
